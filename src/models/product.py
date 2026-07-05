@@ -5,7 +5,7 @@ class Product:
         self.price = price
         self.quantity = quantity
 
-    def display(self):
+    def display(self): 
         print("\nProduct Information")
         print("---------------------")
         print(f"Name        : {self.name}")

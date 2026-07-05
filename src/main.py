@@ -1,8 +1,9 @@
 
 from models.product import Product 
 from storage.json_storage import load_products, save_products
+from services.product_service import ProductService
 
-products = load_products()
+service = ProductService()
 
 def show_menu():
     print("\n=== Smart Inventory & Sales Management System ===")
@@ -12,42 +13,34 @@ def show_menu():
     print("4. Exit")
 
 def add_product():
-    print("\nAdd New Product")
-
     name = input("Product name: ")
     barcode = input("Barcode: ")
     price = float(input("Price: "))
     quantity = int(input("Quantity: "))
 
-    product = Product(name, barcode, price, quantity)
-    products.append(product)
-    save_products(products)
+    service.add_product(name, barcode, price, quantity)
+
     print("\nProduct added successfully!")
 
 def view_products():
+    products = service.get_all_products()
+
     if not products:
         print("\nNo products found.")
         return
         
-    print("\nProduct List")
-
     for product in products:
         product.display()
 
 def search_products():
     barcode = input("Enter Barcode: ")
     
-    for product in products:
-        if product.barcode == barcode:
-            print("\nProduct found")
-            product.display()
-            return
-        
-    print("\nProduct not found.")
+    product = service.find_by_barcode(barcode)
 
-    
-
-            
+    if product:
+        product.display()
+    else:
+        print("Product not found.")
 
 
 def main():
