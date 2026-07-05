@@ -12,3 +12,20 @@ class Product:
         print(f"Barcode     : {self.barcode}")
         print(f"Price       : ${self.price:.2f}")
         print(f"Quantity    : {self.quantity}")
+
+    def to_dict(self):
+        return{
+            "name": self.name,
+            "barcode": self.barcode,
+            "price": self.price,
+            "quantity": self.quantity,
+        }
+    
+    @classmethod
+    def from_dict(cls, data):
+        return cls(
+            data["name"],
+            data["barcode"],
+            data["price"],
+            data["quantity"],
+        )

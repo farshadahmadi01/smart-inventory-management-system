@@ -1,0 +1,14 @@
+[
+    {
+        "name": "Laptop",
+        "barcode": "123",
+        "price": 950.0,
+        "quantity": 5
+    },
+    {
+        "name": "Router",
+        "barcode": "456",
+        "price": 400.0,
+        "quantity": 2
+    }
+]
